@@ -1,0 +1,5 @@
+strahl
+CMake*
+Makefile
+cmake*
+!CMake_Lists.txt
