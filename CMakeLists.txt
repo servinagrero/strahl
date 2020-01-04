@@ -4,8 +4,14 @@ project(strahl)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_executable(strahl src/main.cpp src/vec.cpp src/ray.cpp)
+find_program(CCACHE_FOUND ccache)
+if(CCACHE_FOUND)
+    set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+endif(CCACHE_FOUND)
+
+add_executable(strahl src/utils.cpp src/material.cpp src/main.cpp src/vec.cpp src/ray.cpp src/hittable_list.cpp src/sphere.cpp)
 target_compile_options(strahl PRIVATE -Wall -Wextra -pedantic -Werror)
 
 find_package(OpenGL REQUIRED)

@@ -3,3 +3,4 @@ CMake*
 Makefile
 cmake*
 !CMake_Lists.txt
+compile_commands.json

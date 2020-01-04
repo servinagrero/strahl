@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <math.h>
 
 #include "vec.h"
@@ -47,16 +48,6 @@ Vec3 Vec3::operator/(const Vec3 &v2) {
 
 Vec3 Vec3::operator/(float t) {
     return Vec3(e[0]/t, e[1]/t, e[2]/t);
-}
-
-float Vec3::dot(const Vec3 &v2) {
-    return e[0]*v2.e[0] + e[1]*v2.e[1] + e[2]*v2.e[2];
-}
-
-Vec3 Vec3::cross(const Vec3 &v2) {
-    return Vec3(e[1] * v2.e[2] - e[2] * v2.e[1],
-                e[2] * v2.e[0] - e[0] * v2.e[2],
-                e[0] * v2.e[1] - e[1] * v2.e[0]);
 }
 
 Vec3& Vec3::operator+=(const Vec3 &v) {
@@ -122,4 +113,24 @@ void Vec3::make_unit_vector() {
 // Create a normalized copy of the vector
 Vec3 Vec3::unit_vector() {
         return (*this / this->length());
+}
+
+float dot(const Vec3 &v1, const Vec3 &v2) {
+    return v1[0]*v2[0] + v1[1]*v2[1] + v1[2]*v2[2];
+}
+
+Vec3 cross(const Vec3 &v1, const Vec3 &v2) {
+    return Vec3(v1[1] * v2[2] - v1[2] * v2[1],
+                v1[2] * v2[0] - v1[0] * v2[2],
+                v1[0] * v2[1] - v1[1] * v2[0]);
+}
+
+std::ostream& operator<<(std::ostream& os, const Vec3& v){
+        os << int(v[0]) << " " << int(v[1]) << " " << int(v[2]);
+        return os;
+}
+
+std::ofstream& operator<<(std::ofstream& os, const Vec3& v){
+        os << int(v[0]) << " " << int(v[1]) << " " << int(v[2]);
+        return os;
 }
