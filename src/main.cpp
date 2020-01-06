@@ -55,8 +55,10 @@ int main()
                         }
                         col /= float(antialiasing_samples);
 
-                        // Solve gamma corrected problem
-                        // col = Vec3( sqrt(col[0]), sqrt(col[1]), sqrt(col[2]) );
+                        // To solve gamma correction problem we calculate the sqrt of the
+                        // final color
+                        col = col * 255.99;
+                        col = Vec3( sqrt(col[0]), sqrt(col[1]), sqrt(col[2]) );
 
                         out_file << col << "\n";
                 }
